@@ -9,15 +9,24 @@ import java.util.Set;
 @Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idBook;
     private String title;
+    private String price;
+
+    @ManyToMany
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors = new HashSet<>();
+    public Set<Author> getAuthors() {
+        return authors;
+    }
 
     public void setIdBook(Long idBook) {
         this.idBook = idBook;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getIdBook() {
         return idBook;
     }
@@ -28,12 +37,13 @@ public class Book {
     public void setTitle(String title) {
         this.title = title;
     }
-    @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors = new HashSet<>();
-    public Set<Author> getAuthors() {
-        return authors;
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPrice() {
+        return price;
     }
 
     public void setAuthors(Set<Author> authors) {
