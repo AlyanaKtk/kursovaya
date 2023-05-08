@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BookController
 {
-    @RequestMapping ("/")
+    @RequestMapping ("/books")
     public String helloMessage(Model model) {
+
         return "books.html";
     }
 }
