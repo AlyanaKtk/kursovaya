@@ -19,12 +19,21 @@ public class Book {
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
+
+    public Book() {
+
+    }
+
     public Set<Author> getAuthors() {
         return authors;
     }
 
     public void setIdBook(Long idBook) {
         this.idBook = idBook;
+    }
+    public Book(String title, String price) {
+        this.title = title;
+        this.price = price;
     }
 
     public Long getIdBook() {
